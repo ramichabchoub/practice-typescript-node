@@ -1,36 +1,18 @@
-import express, {
-  Express,
-  Request,
-  Response,
-} from 'express';
+import express, { Express } from 'express';
 import dotenv from 'dotenv';
-import { DataSource } from 'typeorm';
 import cors from 'cors';
+import AppDataSource from './data-source';
 // import bodyParser from 'body-parser';
-import { Task } from './Entity/Task';
+import { tasksRouter } from './tasks/tasks.router';
 
 const app: Express = express();
 dotenv.config();
-const port = process.env.PORT;
+const port = Number(process.env.PORT);
 // app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
 
-export const AppDataSource = new DataSource({
-  type: 'mysql',
-  host: process.env.MYSQL_HOST,
-  port: Number(process.env.MYSQL_PORT),
-  username: process.env.MYSQL_USER,
-  password: process.env.MYSQL_PASSWORD,
-  database: process.env.MYSQL_DATABASE,
-  // entities: [__dirname + '/entity/*.ts'],
-  entities: [Task],
-  synchronize: true,
-});
-
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
+app.use('/', tasksRouter);
 
 AppDataSource.initialize()
   .then(() => {
