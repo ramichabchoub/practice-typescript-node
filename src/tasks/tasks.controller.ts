@@ -1,4 +1,5 @@
 import { Task } from './tasks.entity';
+import { instanceToPlain } from 'class-transformer';
 import AppDataSource from '../data-source';
 
 class TasksController {
@@ -9,16 +10,19 @@ class TasksController {
   ) {}
 
   public async getAll(): Promise<Task[]> {
-    let allTasks: Task[];
+    let allTasks: Task[] = [];
     try {
       allTasks = await this.tasksRepository.find({
         order: {
           date: 'ASC',
         },
       });
+      allTasks = instanceToPlain(allTasks) as Task[];
+      return allTasks;
     } catch (error) {
       console.log(error);
     }
+    return allTasks;
   }
 }
 

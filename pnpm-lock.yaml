@@ -8,6 +8,9 @@ dependencies:
   body-parser:
     specifier: ^1.20.2
     version: 1.20.2
+  class-transformer:
+    specifier: ^0.5.1
+    version: 0.5.1
   cors:
     specifier: ^2.8.5
     version: 2.8.5
@@ -666,6 +669,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
+
+  /class-transformer@0.5.1:
+    resolution: {integrity: sha512-SQa1Ws6hUbfC98vKGxZH3KFY0Y1lm5Zm0SY8XX9zbK7FJCyVEac3ATW0RIpwzW+oOfmHE5PMPufDG9hCfoEOMw==}
+    dev: false
 
   /cli-highlight@2.1.11:
     resolution: {integrity: sha512-9KDcoEVwyUXrjcJNvHD0NFc/hiwe/WPVYIleQh2O1N2Zro5gWJZ/K+3DGn8w8P/F6FxOgzyC5bxDyHIgCSPhGg==}
