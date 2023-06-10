@@ -24,6 +24,10 @@ class TasksController {
     }
     return allTasks;
   }
+
+  // @ts-ignore
+  public async create(task: Task): Promise<Task> {
+  }
 }
 
 export { TasksController };
