@@ -1,4 +1,4 @@
-import { instanceToPlain, plainToClass } from 'class-transformer';
+import { instanceToPlain, plainToInstance } from 'class-transformer';
 import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import { Task } from './tasks.entity';
@@ -13,7 +13,7 @@ class TasksController {
     try {
       allTasks = await AppDataSource.getRepository(
         Task,
-      ).find({
+      ).find({  
         order: {
           date: 'ASC',
         },
@@ -37,7 +37,7 @@ class TasksController {
         .status(400)
         .json({ errors: errors.array() });
     }
-    const task = plainToClass(Task, req.body);
+    const task = plainToInstance(Task, req.body);
     let createdTask: Task;
     try {
       createdTask = await AppDataSource.getRepository(
