@@ -11,7 +11,7 @@ import { Status } from '../enums/Status';
 
 @Entity()
 export class Task {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number;
 
   @Column({
