@@ -38,4 +38,30 @@ const createValidator: ValidationChain[] = [
     ),
 ];
 
-export { createValidator };
+const updateValidator: ValidationChain[] = [
+  body('id')
+    .not()
+    .isEmpty()
+    .withMessage('The task id is mandatory')
+    .trim()
+    .isString()
+    .withMessage('The task id must be a string'),
+  body('status')
+    .trim()
+    .isIn([
+      Status.TODO,
+      Status.IN_PROGRESS,
+      Status.COMPLETED,
+    ])
+    .withMessage(
+      'The task status must be TODO, IN_PROGRESS or COMPLETED',
+    ),
+  body('priority')
+    .trim()
+    .isIn([Priority.LOW, Priority.NORMAL, Priority.HIGH])
+    .withMessage(
+      'The task priority must be LOW, NORMAL or HIGH',
+    ),
+];
+
+export { createValidator, updateValidator };
